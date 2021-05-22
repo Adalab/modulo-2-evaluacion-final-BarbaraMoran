@@ -1,7 +1,30 @@
+.main {
+  margin-left: 15px;
+
+  &__form {
+    margin-top: 50px;
+  }
+}
+.shows-list {
+  display: flex;
+  gap: 15px;
+}
 .shows-list__item {
   background-color: palevioletred;
+  height: 400px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 50px;
+
+  .item__picture {
+    height: 300px;
+  }
 
   .item__title {
-    color: purple;
+    color: blue;
   }
 }
