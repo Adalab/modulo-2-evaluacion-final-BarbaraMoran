@@ -12,10 +12,9 @@
   flex-wrap: wrap;
   gap: 15px;
   color: rgb(8, 8, 8);
-  font-size: 14px;
+  font-size: 20px;
 
-  /*.&__item {
-    background-color: palevioletred;
+  .show-list__item {
     height: 400px;
     width: 300px;
     display: flex;
@@ -28,5 +27,14 @@
     .item__picture {
       height: 300px;
     }
-  }*/
+  }
+
+  .item-color {
+    background-color: palevioletred;
+  }
+
+  .fav-color {
+    background-color: chocolate;
+    box-shadow: 2px 2px 10px #666;
+  }
 }
