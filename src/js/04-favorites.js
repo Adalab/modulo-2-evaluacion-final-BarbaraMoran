@@ -33,9 +33,13 @@ function handleFavBtn(event) {
     });
   }
 
-  renderTvShows();
+  lS(userFavShows);
+}
+
+function lS(userFavShows) {
   localStorage.setItem("userFavShows", JSON.stringify(userFavShows));
   let keptFavData = JSON.parse(localStorage.getItem("userFavShows"));
+  renderTvShows();
   renderFavSection(keptFavData);
 }
 
@@ -63,6 +67,14 @@ function renderFavSection(keptFavData) {
   renderTvShows();
 }
 
-document.addEventListener("load", renderFavShows);
+document.addEventListener("load", recoverFavorites());
+
+function recoverFavorites(event) {
+  if (JSON.parse(localStorage.getItem("userFavShows")) !== null) {
+    let keptFavData = JSON.parse(localStorage.getItem("userFavShows"));
+    userFavShows = keptFavData;
+    renderFavSection(userFavShows);
+  }
+}
 
 // al arrancar > compruebas si hay datos en el local storage > los lees > los guardas en userFavShows > y los pintas

@@ -1,10 +1,7 @@
 //Crear constantes globales
 let apiData = [];
 let userFavShows = [];
-
-/*localStorage.setItem("tasks", JSON.stringify(tasks));
-let keptTaskData = JSON.parse(localStorage.getItem("tasks"));
-console.log(keptTaskData);*/
+let keptFavData = [];
 
 btnEl.addEventListener("click", getApiData);
 
@@ -57,4 +54,3 @@ function renderTvShows() {
   showsList.innerHTML = htmlCode;
   addCardListeners();
 }
-//
