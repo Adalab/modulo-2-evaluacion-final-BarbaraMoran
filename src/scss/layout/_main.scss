@@ -1,5 +1,4 @@
 .main {
-  margin-left: 15px;
   width: 100%;
 
   &__form {
@@ -18,6 +17,7 @@
   gap: 15px;
   color: rgb(8, 8, 8);
   font-size: 20px;
+  text-align: center;
 
   .show-list__item {
     height: 400px;
@@ -27,7 +27,6 @@
     align-items: center;
     gap: 10px;
     justify-content: center;
-    margin-top: 50px;
 
     .item__picture {
       height: 300px;
@@ -50,6 +49,10 @@
 
 .favorites-section {
   padding: 15px 20px;
+
+  &__title {
+    text-align: center;
+  }
 }
 
 .fav-shows-list {
@@ -60,8 +63,8 @@
   font-size: 20px;
 
   .show-list__item {
-    height: 400px;
-    width: 300px;
+    height: 300px;
+    width: 225px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -69,7 +72,7 @@
     justify-content: center;
 
     .item__picture {
-      height: 300px;
+      height: 225px;
     }
   }
 }

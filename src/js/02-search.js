@@ -5,7 +5,7 @@ function submitPrevent(event) {
 
 formEl.addEventListener("submit", submitPrevent);
 
-//Función para recoger la búsqueda del usuario.
+//Función para recoger el value del input (búsqueda del usuario).
 function getUserSearch() {
   return inputEl.value;
 }
