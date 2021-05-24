@@ -1,74 +1,56 @@
-//Crear constante global
-//let showsData;
+//Crear constantes globales
+let apiData = [];
+let userFavShows = [];
 
 btnEl.addEventListener("click", getApiData);
 
 //Función para solicitar data
 function getApiData() {
   const searchedShow = getUserSearch();
-  fetch(`https://api.tvmaze.com/search/shows?q=${searchedShow}`)
+  fetch(`//api.tvmaze.com/search/shows?q=${searchedShow}`)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      //showsData = data;
-      renderTvShows(data);
+      apiData = data;
+      //localStorage.setItem("SearchData", catchData);
+
+      renderTvShows();
     });
 }
 
-//Función para pintar Data
-function renderTvShows(data) {
+//Función para pintar Search Data
+function renderTvShows() {
   showsList.innerHTML = "";
+  let htmlCode = "";
 
-  for (const object of data) {
-    //Localizar datos concretos y meterlos en una constante//
-    const showNameData = object.show.name;
-    const showMediumPicData = object.show.image.medium;
-    const showPicData = object.show.image;
-
-    //Pintar los datos e intento de camvbiar foto NULL
-    if (showPicData === null) {
-      showsList.innerHTML += `<li class= "show-list__item item-color js-card">
-    <img class="item__picture js-picture" src= "https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>
-    <h3>${showNameData}</h3>
-  </li>`;
+  for (const object of apiData) {
+    //Buscar si las tarjetas que está pintando son fav.
+    const checkFavIdsExistence = userFavShows.find(
+      (fav) => fav.show.id === object.show.id
+    );
+    //Si find nos devuelve un undefined no la tenemos en nuestro array de favoritos y pintaremos el li en rosa (clase item-color para series no fav)
+    if (checkFavIdsExistence === undefined) {
+      htmlCode += `<li class= "show-list__item item-color js-card" data-id="${object.show.id}">`;
+      //y si nos devuelve un id de un favorito pintaremos ese favorito en naranja
     } else {
-      showsList.innerHTML += `<li class= "show-list__item item-color js-card">
-    <img class="item__picture js-picture" src= "${showMediumPicData}"/>
-    <h3>${showNameData}</h3>
-  </li>`;
+      htmlCode += `<li class= "show-list__item fav-color js-card" data-id="${object.show.id}">`;
     }
-    //INTENTO DE CAMBIAR FOTO NULL
-    /*const picEls = document.querySelectorAll(".js-picture");
-    for (const picEl of picEls) {
-      if  {
-        picEl.src =
-          "https://via.placeholder.com/210x295/ffffff/666666/?text=TV";
-      } else {
-        picEl.src = `${showMediumPicData}`;
-      }
-    }*/
+    //Si tenemos foto en .show.image.medium la pintaremos
+    if (object.show.image === null) {
+      htmlCode += `<img class="item__picture js-picture" src= "https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>`;
+      //Y si no, pintaremos la foto de relleno.
+    } else {
+      htmlCode += `<img class="item__picture js-picture" src= "${object.show.image.medium}"/>`;
+    }
+    //En cualquier caso pintaremos el título y cerraremos el array.
+    htmlCode += `<h3>${object.show.name}</h3>`;
+    htmlCode += `</li>`;
 
-    /*const listItemEl = document.createElement("li");
-        showsList.appendChild(listItemEl);
-        const pictureEl = document.createElement("img");
-        pictureEl.src = `${showPicData}`;
-        listItemEl.appendChild(pictureEl);
-        const titleEl = document.createElement("h2");
-        const titleName = document.createTextNode(`${showNameData}`);
-        titleEl.appendChild(titleName);
-        listItemEl.appendChild(titleEl);
-        //Añadir estilos
-        listItemEl.style.backgroundColor = "palevioletred";
-        listItemEl.height = "400px";
-        listItemEl.width = "300px";
-        listItemEl.display = "flex";
-        listItemEl.flexDirection = "column";
-        listItemEl.alignItems = "center";
-        listItemEl.gap = "10px";
-        listItemEl.justifyContent = "center";
-        pictureEl.style.height = "250px";*/
+    //showsList.innerHTML = htmlCode;
   }
 
+  showsList.innerHTML = htmlCode;
   addCardListeners();
 }
+//

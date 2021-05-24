@@ -1,9 +1,14 @@
 .main {
   margin-left: 15px;
+  width: 100%;
 
   &__form {
     margin-top: 50px;
     margin-bottom: 50px;
+  }
+
+  &__shows-section {
+    display: flex;
   }
 }
 
@@ -28,13 +33,13 @@
       height: 300px;
     }
   }
+}
 
-  .item-color {
-    background-color: palevioletred;
-  }
+.item-color {
+  background-color: palevioletred;
+}
 
-  .fav-color {
-    background-color: chocolate;
-    box-shadow: 2px 2px 10px #666;
-  }
+.fav-color {
+  background-color: chocolate;
+  box-shadow: 2px 2px 10px #666;
 }
