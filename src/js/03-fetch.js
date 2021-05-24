@@ -2,6 +2,10 @@
 let apiData = [];
 let userFavShows = [];
 
+/*localStorage.setItem("tasks", JSON.stringify(tasks));
+let keptTaskData = JSON.parse(localStorage.getItem("tasks"));
+console.log(keptTaskData);*/
+
 btnEl.addEventListener("click", getApiData);
 
 //Función para solicitar data

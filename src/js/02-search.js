@@ -8,6 +8,4 @@ formEl.addEventListener("submit", submitPrevent);
 //Función para recoger la búsqueda del usuario.
 function getUserSearch() {
   return inputEl.value;
-  //localStorage.setItem("userSearch", userSearch);
-  //const keptData = localStorage.getItem("userSearch");
 }

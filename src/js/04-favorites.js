@@ -14,7 +14,7 @@ function handleFavBtn(event) {
   const selectedCard = event.currentTarget;
   const selectedCardId = parseInt(selectedCard.dataset.id);
 
-  //Ver si ha guardado anteriormente el favorito.Si es undefined no se ha guardado.
+  //Ver si ha guardado anteriormente el favorito. Si es undefined no se ha guardado.
   const checkFavIdsExistence = userFavShows.find((favSerie) => {
     return favSerie.show.id === selectedCardId;
   });
@@ -34,22 +34,35 @@ function handleFavBtn(event) {
   }
 
   renderTvShows();
-  renderFavSection();
-  // setInLocalStorage()
-  console.log(userFavShows);
+  localStorage.setItem("userFavShows", JSON.stringify(userFavShows));
+  let keptFavData = JSON.parse(localStorage.getItem("userFavShows"));
+  renderFavSection(keptFavData);
 }
 
-//document.addEventListener("load", renderFavSection)
+function renderFavSection(keptFavData) {
+  console.log(keptFavData);
+  favShowsList.innerHTML = "";
+  let htmlCode = "";
 
-function renderFavSection() {}
+  for (const fav of keptFavData) {
+    htmlCode += `<li class= "show-list__item fav-color-list js-card" data-id="${fav.show.id}">`;
 
-//GUARDAR FAV EN EL LOCAL STORAGE
-/*function loadFav() {
-  if (localStorage.getItem(object) !== null) {
-    const keptData = localStorage.getItem(object);
-    renderTvShows(data);
+    //Si tenemos foto en .show.image.medium la pintaremos
+    if (fav.show.image === null) {
+      htmlCode += `<img class="item__picture js-picture" src= "https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>`;
+      //Y si no, pintaremos la foto de relleno.
+    } else {
+      htmlCode += `<img class="item__picture js-picture" src= "${fav.show.image.medium}"/>`;
+    }
+    //En cualquier caso pintaremos el título y cerraremos el array.
+    htmlCode += `<h3>${fav.show.name}</h3>`;
+    htmlCode += `</li>`;
   }
+
+  favShowsList.innerHTML = `<h2 class="favorites-section__title">Mis series favoritas</h2>${htmlCode}`;
+  renderTvShows();
 }
-document.addEventListener("load", renderFavShows);*/
+
+document.addEventListener("load", renderFavShows);
 
 // al arrancar > compruebas si hay datos en el local storage > los lees > los guardas en userFavShows > y los pintas
