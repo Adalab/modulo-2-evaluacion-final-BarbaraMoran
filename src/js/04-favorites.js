@@ -33,7 +33,6 @@ function handleFavBtn(event) {
     });
   }
 
-  //llamo al locaLSt
   lS(userFavShows);
 }
 
@@ -60,11 +59,10 @@ function renderFavSection(keptFavData) {
     }
     //En cualquier caso pintaremos el título y el aspa y cerraremos el array.
     htmlCode += `<h3 class= "favorite-show-title">${fav.show.name}</h3>`;
-    htmlCode += `<img class= "icon js-icon" data-id="${fav.show.id}" src="./assets/images/274c.png" />`;
+    htmlCode += `<img class= "icon js-icon" data-id="${fav.score}" src="./assets/images/274c.png" />`;
 
     htmlCode += `</li>`;
   }
-  favShowsList.innerHTML = `<h2 class="favorites-section__title">Mis series favoritas</h2>${htmlCode}`;
 
   favShowsList.innerHTML = `<h2 class= "favorites-section__title">Mis series favoritas</h2>`;
   favShowsList.innerHTML += htmlCode;
@@ -72,6 +70,10 @@ function renderFavSection(keptFavData) {
 
   const binPicEl = document.querySelector(".js-bin-container");
   binPicEl.addEventListener("click", handleBin);
+  const deleteIconEls = document.querySelectorAll(".js-icon");
+  for (const deleteIconEl of deleteIconEls) {
+    deleteIconEl.addEventListener("click", handleIcon);
+  }
 }
 
 //cuando cargamos la página llamamos a la función recoverFavorites
@@ -86,21 +88,39 @@ function recoverFavorites() {
   }
 }
 
-//addBinListeners();
-//Evento para borrar todos los datos
-
-/*function addBinListeners() {
-  console.log(binPicEl);
-  //añadir listener a la papelera
-  
-}*/
-
+//función botón de reset
 function handleBin() {
   userFavShows = [];
   keptFavData = [];
   lS(userFavShows);
-  renderTvShows();
-  renderFavSection();
+  favShowsList.innerHTML = "";
+}
+
+//Función borrar favorito con icono de aspa
+function handleIcon(event) {
+  //identificar la serie seleccionada por el usuario
+  const selectedIcon = event.currentTarget;
+  const selectedIconId = parseInt(selectedIcon.dataset.id);
+
+  //modifico mi array UserFavShows filtrando y quedándome solo con aquellos favoritos que no haya "deseleccionado"
+  userFavShows = userFavShows.filter((fav) => {
+    return fav.show.id !== selectedIconId;
+  });
+
+  /*for (const fav of userFavShows) {
+    console.log(fav);
+    if (fav === "") {
+      favShowsList.innerHTML = "";
+    }
+  }*/
+
+  /*
+  if (userFavShows === undefined) {
+    favShowsList.innerHTML = "";
+  }
+^*/
+  //llamo al locaLSt
+  lS(userFavShows);
 }
 
 // al arrancar > compruebas si hay datos en el local storage > los lees > los guardas en userFavShows > y los pintas

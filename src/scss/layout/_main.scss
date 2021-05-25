@@ -4,10 +4,11 @@
 
   &__form {
     margin-bottom: 50px;
+    margin-top: 30px;
     display: flex;
     gap: 5px;
     margin-left: 30px;
-
+    align-self: center;
     .form__input {
       height: 35px;
       width: 180px;
@@ -28,94 +29,94 @@
     display: flex;
     margin-left: 30px;
     margin-bottom: 20px;
-  }
 
-  .shows-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    color: rgb(8, 8, 8);
-    font-size: 20px;
-    margin-left: 40px;
-
-    .show-list__item {
-      height: 400px;
-      width: 300px;
+    .shows-list {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      justify-content: center;
-      margin-top: 20px;
-      border-radius: 4px;
-
-      .item__picture {
-        height: 300px;
-      }
-    }
-  }
-
-  .item-color {
-    background-color: #ffbbcc;
-  }
-
-  .fav-color {
-    background-color: chocolate;
-    box-shadow: 2px 2px 10px #666;
-  }
-
-  .favorites-section {
-    .fav-shows-list {
-      width: 400px;
-      display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
       gap: 15px;
       color: rgb(8, 8, 8);
       font-size: 20px;
+      margin-left: 50px;
 
       .show-list__item {
-        height: 200px;
+        height: 400px;
+        width: 300px;
         display: flex;
+        flex-direction: column;
         align-items: center;
         gap: 10px;
-        justify-content: flex-start;
-        border-style: dashed;
-        border-width: 5px solid;
-        position: relative;
+        justify-content: center;
+        margin-top: 20px;
         border-radius: 4px;
 
         .item__picture {
-          height: 200px;
-        }
-
-        .favorite-show-title {
-          padding-right: 15px;
-          font-size: 20px;
-        }
-
-        .icon {
-          width: 25px;
-          position: absolute;
-          top: 0;
-          right: 0;
+          height: 300px;
         }
       }
     }
-    .bin-container {
-      margin-top: 25px;
-      width: 100px;
-      height: 100px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      border-style: solid;
-      border-color: black;
-      border-width: 4px;
-      align-self: center;
+
+    .item-color {
+      background-color: #ffbbcc;
     }
-    .bin-button {
-      width: 80px;
+
+    .fav-color {
+      background-color: chocolate;
+      box-shadow: 2px 2px 10px #666;
+    }
+
+    .favorites-section {
+      .fav-shows-list {
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        color: rgb(8, 8, 8);
+        font-size: 20px;
+
+        .show-list__item {
+          height: 200px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          justify-content: flex-start;
+          border-style: dashed;
+          border-width: 5px solid;
+          position: relative;
+          border-radius: 4px;
+
+          .item__picture {
+            height: 200px;
+          }
+
+          .favorite-show-title {
+            padding-right: 15px;
+            font-size: 20px;
+          }
+
+          .icon {
+            width: 25px;
+            position: absolute;
+            top: 0;
+            right: 0;
+          }
+        }
+      }
+      .bin-container {
+        margin-top: 25px;
+        width: 70px;
+        height: 70px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        border-style: solid;
+        border-color: black;
+        border-width: 4px;
+        align-self: center;
+      }
+      .bin-button {
+        width: 50px;
+      }
     }
   }
 }
