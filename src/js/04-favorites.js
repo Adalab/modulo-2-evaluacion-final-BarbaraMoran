@@ -43,6 +43,10 @@ function lS(userFavShows) {
   renderTvShows();
   //Pinto favoritos en sección de favoritos.
   renderFavSection(keptFavData);
+  if (keptFavData.length === 0) {
+    console.log(keptFavData.length);
+    favShowsList.innerHTML = "";
+  }
 }
 
 function renderFavSection(keptFavData) {
@@ -84,7 +88,8 @@ document.addEventListener("load", recoverFavorites());
 
 //Función para recuperar favoritas cuando recargamos la web
 function recoverFavorites() {
-  if (JSON.parse(localStorage.getItem("userFavShows")) !== null) {
+  //console.log(JSON.parse(localStorage.getItem("userFavShows")));
+  if (JSON.parse(localStorage.getItem("userFavShows")).length !== 0) {
     let keptFavData = JSON.parse(localStorage.getItem("userFavShows"));
     userFavShows = keptFavData;
     renderFavSection(userFavShows);
@@ -110,11 +115,8 @@ function handleIcon(event) {
     return fav.show.id !== selectedIconId;
   });
 
+  //quiero borrar la papelera y el título de la sección
+
   //llamo al LS para guardar los cambios
   lS(userFavShows);
-
-  //quiero borrar la papelera y el título de la sección
-  /*if (userFavShows === undefined) {
-    favShowsList.innerHTML = "";
-  }*/
 }
