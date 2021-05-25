@@ -112,6 +112,9 @@ function handleIcon(event) {
 
   //llamo al LS para guardar los cambios
   lS(userFavShows);
-}
 
-// al arrancar > compruebas si hay datos en el local storage > los lees > los guardas en userFavShows > y los pintas
+  //quiero borrar la papelera y el título de la sección
+  /*if (userFavShows === undefined) {
+    favShowsList.innerHTML = "";
+  }*/
+}
