@@ -14,8 +14,6 @@ function getApiData() {
     })
     .then(function (data) {
       apiData = data;
-      //localStorage.setItem("SearchData", catchData);
-
       renderTvShows();
     });
 }
@@ -47,8 +45,6 @@ function renderTvShows() {
     //En cualquier caso pintaremos el título y cerraremos el array.
     htmlCode += `<h3>${object.show.name}</h3>`;
     htmlCode += `</li>`;
-
-    //showsList.innerHTML = htmlCode;
   }
 
   showsList.innerHTML = htmlCode;
