@@ -1,6 +1,9 @@
-//Crear constantes globales
+//Constantes globales "maestras"
+//Datos que nos devuelve el fetch
 let apiData = [];
+//Array de favoritos del usuario
 let userFavShows = [];
+//Array de datos de favoritos del usuario guardados en LS.
 let keptFavData = [];
 
 btnEl.addEventListener("click", getApiData);

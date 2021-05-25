@@ -1,8 +1,7 @@
-//Extraer LIS con las tarjetas de las series
+//Convertimos nuestras tarjetas en listeners
 function addCardListeners() {
   const cardEls = document.querySelectorAll(".js-card");
 
-  //añadir listener a cada uno de los lis
   for (const cardEl of cardEls) {
     cardEl.addEventListener("click", handleFavBtn);
   }
@@ -18,28 +17,31 @@ function handleFavBtn(event) {
   const checkFavIdsExistence = userFavShows.find((favSerie) => {
     return favSerie.show.id === selectedCardId;
   });
-  //Si no se ha guardado(da undefined) guardamos el objeto entero de la serie en nuestro array de favoritos.
+  //Si no se ha guardado, guardamos el objeto con sus propiedades (la serie) en nuestro array de favoritos.
   if (checkFavIdsExistence === undefined) {
     const foundSerie = apiData.find((serie) => {
       return serie.show.id === selectedCardId;
     });
     userFavShows.push(foundSerie);
   }
-  //Si ya se hubiera guardado antes, lo borraremos del array userFavShows.
+  //Si ya se hubiera guardado antes, lo borraremos del array de favoritos.
   else {
-    //modifico mi array UserFavShows filtrando y quedándome solo con aquellos favoritos que no haya "deseleccionado"
+    //modifico mi array de favoritos filtrando y quedándome solo con aquellos favoritos que no hayan sido "deseleccionados"
     userFavShows = userFavShows.filter((fav) => {
       return fav.show.id !== selectedCardId;
     });
   }
 
+  //llamo a LS para guardarlo en LS.
   lS(userFavShows);
 }
 
 function lS(userFavShows) {
   localStorage.setItem("userFavShows", JSON.stringify(userFavShows));
   let keptFavData = JSON.parse(localStorage.getItem("userFavShows"));
+  //Pinto favoritos en la lista de resultados.
   renderTvShows();
+  //Pinto favoritos en sección de favoritos.
   renderFavSection(keptFavData);
 }
 
@@ -47,6 +49,7 @@ function renderFavSection(keptFavData) {
   favShowsList.innerHTML = "";
   let htmlCode = "";
 
+  //para cada una de las tarjetas de favoritos
   for (const fav of keptFavData) {
     htmlCode += `<li class= "show-list__item js-card" data-id="${fav.show.id}">`;
 
@@ -57,10 +60,9 @@ function renderFavSection(keptFavData) {
     } else {
       htmlCode += `<img class="item__picture js-picture" src= "${fav.show.image.medium}" alt="${fav.show.name}"/>`;
     }
-    //En cualquier caso pintaremos el título y el aspa y cerraremos el array.
+    //En cualquier caso pintaremos el título y el icono de aspa y cerraremos el array.
     htmlCode += `<h3 class= "favorite-show-title">${fav.show.name}</h3>`;
     htmlCode += `<img class= "icon js-icon" data-id="${fav.score}" src="./assets/images/274c.png" />`;
-
     htmlCode += `</li>`;
   }
 
@@ -68,6 +70,7 @@ function renderFavSection(keptFavData) {
   favShowsList.innerHTML += htmlCode;
   favShowsList.innerHTML += `<div class= "bin-container js-bin-container"><img class= "bin-button js-bin" src="./assets/images/trash.png" /></div>`;
 
+  //Añadimos listeners de icono de aspa y papelera reset
   const binPicEl = document.querySelector(".js-bin-container");
   binPicEl.addEventListener("click", handleBin);
   const deleteIconEls = document.querySelectorAll(".js-icon");
@@ -76,10 +79,10 @@ function renderFavSection(keptFavData) {
   }
 }
 
-//cuando cargamos la página llamamos a la función recoverFavorites
+//Cuando cargamos la página llamamos a la función recoverFavorites
 document.addEventListener("load", recoverFavorites());
 
-//función para recuperar favoritas cuando recargamos la web
+//Función para recuperar favoritas cuando recargamos la web
 function recoverFavorites() {
   if (JSON.parse(localStorage.getItem("userFavShows")) !== null) {
     let keptFavData = JSON.parse(localStorage.getItem("userFavShows"));
@@ -88,7 +91,7 @@ function recoverFavorites() {
   }
 }
 
-//función botón de reset
+//Función papelera de reset (borrar todos los favoritos)
 function handleBin() {
   userFavShows = [];
   keptFavData = [];
@@ -96,7 +99,7 @@ function handleBin() {
   favShowsList.innerHTML = "";
 }
 
-//Función borrar favorito con icono de aspa
+//Función borrar serie favorita con icono de aspa.
 function handleIcon(event) {
   //identificar la serie seleccionada por el usuario
   const selectedIcon = event.currentTarget;
@@ -107,19 +110,7 @@ function handleIcon(event) {
     return fav.show.id !== selectedIconId;
   });
 
-  /*for (const fav of userFavShows) {
-    console.log(fav);
-    if (fav === "") {
-      favShowsList.innerHTML = "";
-    }
-  }*/
-
-  /*
-  if (userFavShows === undefined) {
-    favShowsList.innerHTML = "";
-  }
-^*/
-  //llamo al locaLSt
+  //llamo al LS para guardar los cambios
   lS(userFavShows);
 }
 

@@ -1,4 +1,4 @@
-//Función Prevent Default para que la info no se envíe al navegador.
+//Función Prevent Default para que la info no se envíe al navegador (bloquear enter del input).
 function submitPrevent(event) {
   event.preventDefault();
 }
