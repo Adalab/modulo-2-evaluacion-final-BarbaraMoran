@@ -26,32 +26,25 @@ function handleFavBtn(event) {
   }
 
   lS(userFavShows);
+  renderTvShows();
+  renderFavSection(userFavShows);
 }
 
 function lS(userFavShows) {
   localStorage.setItem("userFavShows", JSON.stringify(userFavShows));
   let keptFavData = JSON.parse(localStorage.getItem("userFavShows"));
-
-  renderTvShows();
-  renderFavSection(keptFavData);
-
-  if (keptFavData.length === 0) {
-    console.log(keptFavData.length);
-    favShowsList.innerHTML = "";
-  }
 }
 
-function renderFavSection(keptFavData) {
-  favShowsList.innerHTML = "";
+function renderFavSection(userFavShows) {
   let htmlCode = "";
 
-  for (const fav of keptFavData) {
+  for (const fav of userFavShows) {
     htmlCode += `<li class= "show-list__item js-card" data-id="${fav.show.id}">`;
 
     if (fav.show.image === null) {
       htmlCode += `<img class="item__picture js-picture" src= "https://via.placeholder.com/210x295/ffffff/666666/?text=TV" alt="${fav.show.name}"/>`;
     } else {
-      htmlCode += `<img class="item__picture js-picture" src= "${fav.show.image.medium}" alt="${fav.show.name}"/>`;
+      htmlCode += `<img class="item__picture js-picture" src= "${fav.show.image.medium}" alt="${fav.show.name} title="${fav.show.name}"/>`;
     }
 
     htmlCode += `<h3 class= "favorite-show-title">${fav.show.name}</h3>`;
@@ -63,29 +56,33 @@ function renderFavSection(keptFavData) {
   favShowsList.innerHTML += htmlCode;
   favShowsList.innerHTML += `<div class= "bin-container js-bin-container"><img class= "bin-button js-bin" src="./assets/images/trash.png" /></div>`;
 
-  const binPicEl = document.querySelector(".js-bin-container");
-  binPicEl.addEventListener("click", handleBin);
-  const deleteIconEls = document.querySelectorAll(".js-icon");
-  for (const deleteIconEl of deleteIconEls) {
-    deleteIconEl.addEventListener("click", handleIcon);
+  if (userFavShows.length === 0) {
+    favShowsList.innerHTML = "";
   }
+
+  addBinListener();
+  addDeleteIconListeners();
 }
 
-document.addEventListener("load", recoverFavorites());
-
-function recoverFavorites() {
-  if (JSON.parse(localStorage.getItem("userFavShows")).length !== 0) {
-    let keptFavData = JSON.parse(localStorage.getItem("userFavShows"));
-    userFavShows = keptFavData;
-    renderFavSection(userFavShows);
-  }
+function addBinListener() {
+  const binPicEl = document.querySelector(".js-bin-container");
+  binPicEl.addEventListener("click", handleBin);
 }
 
 function handleBin() {
   userFavShows = [];
   keptFavData = [];
+
+  renderTvShows(userFavShows);
+  renderFavSection(userFavShows);
   lS(userFavShows);
-  favShowsList.innerHTML = "";
+}
+
+function addDeleteIconListeners() {
+  const deleteIconEls = document.querySelectorAll(".js-icon");
+  for (const deleteIconEl of deleteIconEls) {
+    deleteIconEl.addEventListener("click", handleIcon);
+  }
 }
 
 function handleIcon(event) {
@@ -96,5 +93,17 @@ function handleIcon(event) {
     return fav.show.id !== selectedIconId;
   });
 
+  renderTvShows(userFavShows);
+  renderFavSection(userFavShows);
   lS(userFavShows);
+}
+
+document.addEventListener("load", recoverFavorites());
+
+function recoverFavorites() {
+  if (JSON.parse(localStorage.getItem("userFavShows")).length !== 0) {
+    let keptFavData = JSON.parse(localStorage.getItem("userFavShows"));
+    userFavShows = keptFavData;
+    renderFavSection(userFavShows);
+  }
 }

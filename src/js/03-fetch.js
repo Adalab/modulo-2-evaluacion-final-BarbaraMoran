@@ -26,21 +26,21 @@ function renderTvShows() {
     );
 
     if (checkFavIdsExistence === undefined) {
-      htmlCode += `<li class= "show-list__item item-color js-card" data-id="${object.show.id}">`;
+      htmlCode += `<li class= "show-list__item item-color js-card" data-id="${object.show.id}" data-name="${object.show.name}">`;
     } else {
-      htmlCode += `<li class= "show-list__item fav-color js-card" data-id="${object.show.id}">`;
+      htmlCode += `<li class= "show-list__item fav-color js-card" data-id="${object.show.id}" data-name="${object.show.name}">`;
     }
 
     if (object.show.image === null) {
       htmlCode += `<img class="item__picture js-picture" src= "https://via.placeholder.com/210x295/ffffff/666666/?text=TV"/>`;
     } else {
-      htmlCode += `<img class="item__picture js-picture" src= "${object.show.image.medium}"/>`;
+      htmlCode += `<img class="item__picture js-picture" src= "${object.show.image.medium}" alt="${object.show.name}" title="${object.show.name}"/>`;
     }
 
     htmlCode += `<h3>${object.show.name}</h3>`;
+    htmlCode += `<h5>${object.show.genres.join(" - ")}</h5>`;
     htmlCode += `</li>`;
   }
 
   showsList.innerHTML = htmlCode;
-  addCardListeners();
 }
