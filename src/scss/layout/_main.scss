@@ -4,11 +4,10 @@
 
   &__form {
     margin-bottom: 50px;
-    margin-top: 30px;
+    margin-top: 60px;
     display: flex;
+    justify-content: center;
     gap: 5px;
-    margin-left: 30px;
-    align-self: center;
 
     .form__input {
       height: 35px;
@@ -21,8 +20,13 @@
       width: 50px;
       width: 120px;
       font-size: 20px;
-      background-color: black;
+      background-image: linear-gradient(
+        178.2deg,
+        rgba(118, 8, 23, 1) 10.9%,
+        rgba(158, 12, 33, 1) 62.6%
+      );
       color: whitesmoke;
+      font-weight: bold;
     }
   }
 
@@ -49,6 +53,7 @@
         justify-content: center;
         margin-top: 20px;
         border-radius: 4px;
+        cursor: pointer;
 
         .item__picture {
           height: 300px;
@@ -57,40 +62,50 @@
     }
 
     .item-color {
-      background-color: #ffbbcc;
+      background-color: #85929e;
     }
 
     .fav-color {
-      background-color: chocolate;
+      background-image: linear-gradient(
+        178.2deg,
+        rgba(118, 8, 23, 1) 10.9%,
+        rgba(158, 12, 33, 1) 62.6%
+      );
+
       box-shadow: 2px 2px 10px #666;
     }
 
     .favorites-section {
       .fav-shows-list {
-        width: 400px;
         display: flex;
         flex-direction: column;
         gap: 15px;
-        color: rgb(8, 8, 8);
-        font-size: 20px;
+        color: rgba(158, 12, 33, 1);
+        font-family: $fontfamily-title;
+        font-size: 30px;
 
         .show-list__item {
           height: 200px;
+          width: 400px;
           display: flex;
           align-items: center;
           gap: 10px;
           justify-content: flex-start;
-          border-style: dashed;
-          border-width: 5px solid;
+          font-family: $fontfamily;
+          color: white;
+          border-style: groove;
+          border-width: 20px solid;
           position: relative;
           border-radius: 4px;
+          border-color: white;
 
           .item__picture {
             height: 200px;
           }
 
           .favorite-show-title {
-            padding-right: 15px;
+            padding-left: 20px;
+            padding-right: 20px;
             font-size: 20px;
           }
 
@@ -99,6 +114,7 @@
             position: absolute;
             top: 0;
             right: 0;
+            cursor: pointer;
           }
         }
       }
@@ -117,6 +133,7 @@
       }
       .bin-button {
         width: 50px;
+        cursor: pointer;
       }
     }
   }
