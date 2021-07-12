@@ -1,10 +1,24 @@
 .header {
-  height: 150px;
+  height: 80px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  font-size: 25px;
+  font-size: 15px;
   color: white;
   font-family: $fontfamily-title;
   text-transform: uppercase;
+
+  @media all and(min-width: 550px) {
+    height: 150px;
+    font-size: 20px;
+  }
+
+  @media all and(min-width: 750px) {
+    height: 150px;
+    font-size: 30px;
+  }
+
+  @media all and(min-width: 980px) {
+    font-size: 40px;
+  }
 }

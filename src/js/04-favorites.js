@@ -54,17 +54,21 @@ function renderFavSection(keptFavData) {
       htmlCode += `<img class="item__picture js-picture" src= "${fav.show.image.medium}" alt="${fav.show.name}"/>`;
     }
 
+    htmlCode += `<div class= "fav-info">`;
     htmlCode += `<h3 class= "favorite-show-title">${fav.show.name}</h3>`;
+    htmlCode += `<h6 class= "favorite-show-genre">${fav.show.genres.join(
+      " , "
+    )}</h6>`;
+    htmlCode += `</div>`;
     htmlCode += `<img class= "icon js-icon" data-id="${fav.score}" src="./assets/images/274c.png" />`;
     htmlCode += `</li>`;
   }
 
-  favShowsList.innerHTML = `<h2 class= "favorites-section__title">Saved series
-  </h2>`;
+  favShowsList.innerHTML = `<div class= "fav-shows-list__header"> <h2 class= "favorites-section__title">saved series
+  </h2><img class= "bin-button js-bin" src="./assets/images/trash.jpg" /></div>`;
   favShowsList.innerHTML += htmlCode;
-  favShowsList.innerHTML += `<div class= "bin-container js-bin-container"><img class= "bin-button js-bin" src="./assets/images/trash.png" /></div>`;
 
-  const binPicEl = document.querySelector(".js-bin-container");
+  const binPicEl = document.querySelector(".js-bin");
   binPicEl.addEventListener("click", handleBin);
   const deleteIconEls = document.querySelectorAll(".js-icon");
   for (const deleteIconEl of deleteIconEls) {

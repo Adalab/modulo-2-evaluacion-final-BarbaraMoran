@@ -17,6 +17,7 @@ function getApiData() {
 }
 
 function renderTvShows() {
+  showsListTitle.innerHTML = "";
   showsList.innerHTML = "";
   let htmlCode = "";
 
@@ -38,9 +39,13 @@ function renderTvShows() {
     }
 
     htmlCode += `<h3>${object.show.name}</h3>`;
+    htmlCode += `<h5>${object.show.genres.join(" , ")}</h5>`;
     htmlCode += `</li>`;
   }
 
-  showsList.innerHTML = htmlCode;
+  if (apiData.length !== 0) {
+    showsListTitle.innerHTML = `search results`;
+  }
+  showsList.innerHTML += htmlCode;
   addCardListeners();
 }

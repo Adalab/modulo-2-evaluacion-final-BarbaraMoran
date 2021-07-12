@@ -1,47 +1,95 @@
 .main {
   font-family: $fontfamily;
-  width: 100%;
 
   &__form {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     margin-top: 60px;
     display: flex;
     justify-content: center;
     gap: 5px;
 
+    @media all and(min-width: 550px) {
+      margin-bottom: 80px;
+      margin-top: 80px;
+    }
+
     .form__input {
-      height: 35px;
-      width: 180px;
-      font-size: 18px;
+      height: 40px;
+      width: 160px;
+      font-size: 20px;
+      margin-right: 5px;
+
+      @media all and(min-width: 812px) {
+        height: 35px;
+        width: 180px;
+        font-size: 18px;
+      }
     }
 
     .form__button {
-      height: 40px;
-      width: 50px;
-      width: 120px;
-      font-size: 20px;
+      height: 45px;
+      width: 110px;
+      font-family: $fontfamily;
+      font-size: 30px;
       background-image: linear-gradient(
         178.2deg,
         rgba(118, 8, 23, 1) 10.9%,
         rgba(158, 12, 33, 1) 62.6%
       );
       color: whitesmoke;
-      font-weight: bold;
+
+      @media all and(min-width: 812px) {
+        height: 40px;
+        width: 50px;
+        width: 120px;
+        font-size: 20px;
+      }
     }
   }
 
   &__shows-section {
     display: flex;
-    margin-left: 30px;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 20px;
+
+    .results-section-title {
+      color: rgba(158, 12, 33, 1);
+      font-family: $fontfamily-title;
+      font-size: 40px;
+      margin-top: 30px;
+
+      @media all and(min-width: 706px) {
+        margin-left: 50px;
+      }
+
+      @media all and(min-width: 812px) {
+        margin-top: 0;
+      }
+      @media all and(min-width: 550px) {
+        font-size: 50px;
+      }
+    }
+
+    @media all and(min-width: 812px) {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+    }
 
     .shows-list {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
       gap: 15px;
       color: rgb(8, 8, 8);
       font-size: 20px;
-      margin-left: 50px;
+
+      @media all and(min-width: 705px) {
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-left: 50px;
+      }
 
       .show-list__item {
         height: 400px;
@@ -49,7 +97,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 10px;
+        margin-right: 20px;
         justify-content: center;
         margin-top: 20px;
         border-radius: 4px;
@@ -57,6 +105,7 @@
 
         .item__picture {
           height: 300px;
+          margin-bottom: 5px;
         }
       }
     }
@@ -79,14 +128,33 @@
       .fav-shows-list {
         display: flex;
         flex-direction: column;
-        gap: 15px;
-        color: rgba(158, 12, 33, 1);
-        font-family: $fontfamily-title;
-        font-size: 30px;
+        margin-left: 15px;
+
+        @media all and(min-width: 812px) {
+          margin-left: 40px;
+        }
+
+        .fav-shows-list__header {
+          color: rgba(158, 12, 33, 1);
+          font-family: $fontfamily-title;
+          font-size: 25px;
+          display: flex;
+          align-items: baseline;
+          justify-content: flex-start;
+
+          @media all and(min-width: 550px) {
+            font-size: 35px;
+          }
+          .bin-button {
+            height: 25px;
+            cursor: pointer;
+            margin-left: 20px;
+          }
+        }
 
         .show-list__item {
-          height: 200px;
-          width: 400px;
+          height: 150px;
+          width: 320px;
           display: flex;
           align-items: center;
           gap: 10px;
@@ -98,15 +166,33 @@
           position: relative;
           border-radius: 4px;
           border-color: white;
+          margin-top: 15px;
 
-          .item__picture {
+          @media all and(min-width: 550px) {
             height: 200px;
+            width: 400px;
           }
 
-          .favorite-show-title {
+          .item__picture {
+            height: 150px;
+            @media all and(min-width: 550px) {
+              height: 200px;
+            }
+          }
+
+          .fav-info {
+            display: flex;
+            flex-direction: column;
             padding-left: 20px;
             padding-right: 20px;
-            font-size: 20px;
+
+            .favorite-show-title {
+              font-size: 20px;
+            }
+
+            .favorite-show-genre {
+              font-size: 15px;
+            }
           }
 
           .icon {
@@ -117,23 +203,6 @@
             cursor: pointer;
           }
         }
-      }
-      .bin-container {
-        margin-top: 25px;
-        width: 70px;
-        height: 70px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-        border-style: solid;
-        border-color: black;
-        border-width: 4px;
-        align-self: center;
-      }
-      .bin-button {
-        width: 50px;
-        cursor: pointer;
       }
     }
   }
