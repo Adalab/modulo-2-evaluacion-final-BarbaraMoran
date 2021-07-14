@@ -64,7 +64,7 @@ function renderFavSection(keptFavData) {
     htmlCode += `</li>`;
   }
 
-  favShowsList.innerHTML = `<div class= "fav-shows-list__header"> <h2 class= "favorites-section__title">saved series
+  favShowsList.innerHTML = `<div class= "fav-shows-list__header"> <h2 class= "favorites-section__title">favorite series
   </h2><img class= "bin-button js-bin" src="./assets/images/trash.jpg" /></div>`;
   favShowsList.innerHTML += htmlCode;
 
