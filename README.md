@@ -15,6 +15,6 @@ Made with JavaScript, SASS, HTML5 and Node.</b>
 ***
 # Clone the project on your Code editor and try it!
 
-👉Install the project dependencies key in your terminal "npm install".
+👉Install the project dependencies ➡️ "npm install".
 
-👉Start the project in your VS Code key in your terminal "npm start".
+👉Start the project in your VS Code ➡️ "npm start".
