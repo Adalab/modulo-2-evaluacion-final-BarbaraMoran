@@ -13,7 +13,7 @@ Made with JavaScript, SASS, HTML5 and Node.</b>
 <img src="https://i.postimg.cc/GhSD5SST/evaluacion.png"/>
 
 ***
-# Clone the project on your Code editor and try it!
+# Download the project on your Code editor and try it!
 
 👉Install the project dependencies ➡️ "npm install".
 
